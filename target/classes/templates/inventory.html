@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Inventory</title>
+<style>
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 5px;
+}
+</style>
+</head>
+<body>
+<form>
+<table>
+<tr>
+<th>ID</th>
+<th>Make</th>
+<th>Model</th>
+<th>Year</th>
+<th>Mileage</th>
+<th>MPG</th>
+<th>Price</th>
+</tr>
+<tr th:each="currentCar : ${cars}" >
+<td th:text="${currentCar.id}" />
+ <td th:text="${currentCar.make}" />
+ <td th:text="${currentCar.model}" />
+ <td th:text="${currentCar.year}" />
+ <td th:text="${currentCar.mileage}" />
+ <td th:text="${currentCar.mpg}" />
+<!-- <td th:text="${currentCar.dealership.name}" />-->
+ <td th:text="${currentCar.price}" />
+ <td><a th:href="@{/edit-car/{id}(id=${currentCar.id})}">Edit</a></td>
+ <td><a th:href="@{/delete-car/{id}(id=${currentCar.id})}">Delete</a></td>
+</tr>
+</table>
+</form>
+<a href="../addCar">Add a car</a>
+<a href="../index.html">Back to index</a>
+</body>
+</html>

@@ -5,34 +5,46 @@
  */
 package dmacc.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @Entity
 public class Car {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String make;
 	private String model;
 	private double mpg;
 	private int year;
 	private int mileage;
+	private double price;
+	//@ManyToOne
+	//private Dealership dealership;
 	
-	public Car() {
+//	public Car() {
 		
-	}
+//	}
 
-	public Car(String make, String model, double mpg, int year, int mileage) {
+	public Car(String make, String model, double mpg, int year, int mileage, double price) {
 		this.make = make;
 		this.model = model;
 		this.mpg = mpg;
 		this.year = year;
 		this.mileage = mileage;
-	}
+		this.price = price;
+		}
 
-	public Car(int id, String make, String model, double mpg, int year, int mileage) {
+/**	public Car(int id, String make, String model, double mpg, int year, int mileage) {
 		this.id = id;
 		this.make = make;
 		this.model = model;
@@ -93,7 +105,7 @@ public class Car {
 	public String toString() {
 		return "Car [id=" + id + ", make=" + make + ", model=" + model + ", mpg=" + mpg + ", year=" + year
 				+ ", mileage=" + mileage + "]";
-	}
+	} */
 	
 	
 	

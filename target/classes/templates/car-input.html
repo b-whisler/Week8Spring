@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Entry</title>
+</head>
+<body>
+<form th:object="${newCar}" th:action="@{/update-car/{id}(id=${newCar.id})}" method=POST>
+Make: <input name="name" size="20" th:field="*{make}"> <br />
+Model: <input name="address" size="20" th:field="*{model}"><br />
+Year: <input name="address" size="4" th:field="*{year}"><br />
+Mileage: <input name="address" size="7" th:field="*{mileage}"><br />
+MPG: <input name="address" size="5" th:field="*{mpg}"><br />
+Price: $<input name="address" size="10" th:field="*{price}"><br />
+<input name="submit" type="submit" value="submit" />
+</form>
+<a href="../viewinventory">Manage Cars</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Dealerships</title>
+</head>
+<body>
+<form>
+<table>
+<tr th:each="currentDealer : ${dealers}" >
+<td th:text="${currentDealer.id}" />
+ <td th:text="${currentDealer.name}" />
+ <td th:text="${currentDealer.address}" />
+ <!--  <td th:text="${currentDealer.inventory.size}" /> -->
+ <td><a th:href="@{/edit-dealership/{id}(id=${currentDealer.id})}">Edit</a></td>
+ <td><a th:href="@{/delete-dealership/{id}(id=${currentDealer.id})}">Delete</a></td>
+</tr>
+</table>
+</form>
+<a href="../addDealership">Add a dealership</a>
+<a href="../index.html">Back to index</a>
+</body>
+</html>

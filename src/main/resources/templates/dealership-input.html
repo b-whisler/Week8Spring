@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dealership</title>
+</head>
+<body>
+<form th:object="${newDealership}" th:action="@{/update-dealership/{id}(id=${newDealership.id})}" method=POST>
+Name: <input name="name" size="20" th:field="*{name}"> <br />
+Address: <input name="address" size="10" th:field="*{address}"><br />
+<input name="submit" type="submit" value="submit" />
+</form>
+<a href="../viewAll">Manage Dealerships</a>
+</body>
+</html>
