@@ -2,16 +2,88 @@
 <head>
 <meta charset="UTF-8">
 <title>Car Entry</title>
+<script>
+function validateForm(form){
+	error.textContent = "";
+	error.style.color = "red";
+	form.make.style.borderColor = "grey";
+	form.model.style.borderColor = "grey";
+	form.year.style.borderColor = "grey";
+	form.mileage.style.borderColor = "grey";
+	form.mpg.style.borderColor = "grey";
+	form.price.style.borderColor = "grey";
+	
+	if (form.make.value == ""){
+		error.textContent = error.textContent + "Make cannot be blank. ";
+		form.make.style.borderColor = "red";
+		}
+	
+	if (form.model.value == ""){
+		error.textContent = error.textContent + "Model cannot be blank. ";
+		form.model.style.borderColor = "red";
+		}
+	
+	if (form.year.value == ""){
+		error.textContent = error.textContent + "Year cannot be blank. ";
+		form.year.style.borderColor = "red";
+		} else if (form.year.value < 1900){
+			error.textContent = error.textContent + "Year cannot be older than 1900. ";
+			form.year.style.borderColor = "red";
+			} else if (isNaN(form.year.value)){
+				error.textContent = error.textContent + "Year must be a valid number. ";
+				form.year.style.borderColor = "red";
+				}
+	
+	if (form.mileage.value == ""){
+		error.textContent = error.textContent + "Mileage cannot be blank. ";
+		form.mileage.style.borderColor = "red";
+		} else if (form.mileage.value < 0){
+			error.textContent = error.textContent + "Mileage cannot be negative. ";
+			form.mileage.style.borderColor = "red";
+			}
+	
+	if (form.mpg.value == ""){
+		error.textContent = error.textContent + "MPG cannot be blank. ";
+		form.mpg.style.borderColor = "red";
+		} else if (form.mpg.value < 1){
+			error.textContent = error.textContent + "MPG must be at least 1. ";
+			form.mpg.style.borderColor = "red";
+			} else if (isNaN(form.mpg.value)){
+				error.textContent = error.textContent + "MPG must be a valid number. ";
+				form.mpg.style.borderColor = "red";
+				}
+	
+	if (form.price.value == ""){
+		error.textContent = error.textContent + "Price cannot be blank. ";
+		form.price.style.borderColor = "red";
+		} else if (form.price.value < 500){
+			error.textContent = error.textContent + "Price must be at least $500. ";
+			form.price.style.borderColor = "red";
+			} else if (isNaN(form.price.value)){
+				error.textContent = error.textContent + "Price must be a valid number. ";
+				form.price.style.borderColor = "red";
+				}
+
+	if (error.textContent == ""){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+</script>
 </head>
 <body>
-<form th:object="${newCar}" th:action="@{/update-car/{id}(id=${newCar.id})}" method=POST>
-Make: <input name="name" size="20" th:field="*{make}"> <br />
-Model: <input name="address" size="20" th:field="*{model}"><br />
-Year: <input name="address" size="4" th:field="*{year}"><br />
-Mileage: <input name="address" size="7" th:field="*{mileage}"><br />
-MPG: <input name="address" size="5" th:field="*{mpg}"><br />
-Price: $<input name="address" size="10" th:field="*{price}"><br />
-<input name="submit" type="submit" value="submit" />
+<form th:object="${newCar}" th:action="@{/update-car/{id}(id=${newCar.id})}" onsubmit="return validateForm(this)" method=POST>
+Make: <input name="make" size="20" th:field="*{make}"> <br />
+Model: <input name="model" size="20" th:field="*{model}"><br />
+Year: <input name="year" size="4" th:field="*{year}"><br />
+Mileage: <input name="mileage" size="7" th:field="*{mileage}"><br />
+MPG: <input name="mpg" size="5" th:field="*{mpg}"><br />
+Price: $<input name="price" size="10" th:field="*{price}"><br />
+<span id="error"></span><br />
+<input name="submit" type="submit" value="Submit" />
 </form>
 <a href="../viewinventory">Manage Cars</a>
 </body>
